@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Find best matches</h2>
+
+<form method="post" class="form-box">
+    <label for="job_id">Select job</label>
+    <select id="job_id" name="job_id" required>
+        <option value="">-- choose a job --</option>
+        {% for j in jobs %}
+        <option value="{{ j._id }}" {% if selected_job_id == j._id|string %}selected{% endif %}>
+            {{ j.title }}
+        </option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Find matches</button>
+</form>
+
+{% if llm_answer %}
+<section class="result-box">
+    <h3>LLM result</h3>
+    <pre>{{ llm_answer }}</pre>
+</section>
+{% endif %}
+
+{% endblock %}

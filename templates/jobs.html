@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Jobs</h2>
+
+<form method="post" class="form-box">
+    <label for="title">Job title</label>
+    <input type="text" id="title" name="title" placeholder="Data Scientist" required>
+
+    <label for="job_text">Job description</label>
+    <textarea id="job_text" name="job_text" rows="8"
+              placeholder="Paste full job description here" required></textarea>
+
+    <button type="submit">Save job</button>
+</form>
+
+<h3>Saved jobs</h3>
+
+<table class="data-table">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Skill count</th>
+        <th>Sample skills</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for j in jobs %}
+    <tr>
+        <td>{{ j.title }}</td>
+        <td>{{ j.skill_count or (j.skills|length) }}</td>
+        <td>
+            {% if j.skills %}
+                {{ (j.skills[:5]) | join(", ") }}
+                {% if (j.skills|length) > 5 %} ... {% endif %}
+            {% else %}
+                <em>no skills</em>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

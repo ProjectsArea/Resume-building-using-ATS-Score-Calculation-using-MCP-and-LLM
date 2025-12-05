@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Resumes</h2>
+
+<form method="post" enctype="multipart/form-data" class="form-box">
+    <label for="resume_text">Resume text (optional)</label>
+    <textarea id="resume_text" name="resume_text" rows="6"
+              placeholder="Paste resume text here if not uploading a PDF"></textarea>
+
+    <label for="file">Or upload resume PDF</label>
+    <input type="file" id="file" name="file" accept="application/pdf">
+
+    <p class="hint">Upload PDF or paste text. If PDF is present then it is used.</p>
+
+    <button type="submit">Save resume</button>
+</form>
+
+<h3>Saved resumes</h3>
+
+<table class="data-table">
+    <thead>
+    <tr>
+        <th>Filename</th>
+        <th>Skill count</th>
+        <th>Sample skills</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for r in resumes %}
+    <tr>
+        <td>{{ r.filename }}</td>
+        <td>{{ r.skill_count or (r.skills|length) }}</td>
+        <td>
+            {% if r.skills %}
+                {{ (r.skills[:5]) | join(", ") }}
+                {% if (r.skills|length) > 5 %} ... {% endif %}
+            {% else %}
+                <em>no skills</em>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

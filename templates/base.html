@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ResumeATS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-left">
+        <a href="{{ url_for('home') }}" class="brand">ResumeATS</a>
+    </div>
+    <div class="nav-right">
+        <a href="{{ url_for('resumes_page') }}">Resumes</a>
+        <a href="{{ url_for('jobs_page') }}">Jobs</a>
+        <a href="{{ url_for('find_match') }}">Find Match</a>
+    </div>
+</nav>
+
+<main class="container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="flash">
+        {% for msg in messages %}
+        <p>{{ msg }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>

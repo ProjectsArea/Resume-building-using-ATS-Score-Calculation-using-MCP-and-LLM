@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>ResumeATS Dashboard</h1>
+<p>Store resumes and jobs, then find best matches with tools and LLM.</p>
+
+<div class="cards">
+    <a class="card" href="{{ url_for('resumes_page') }}">
+        <h3>Resumes</h3>
+        <p>Add and view candidate resumes.</p>
+    </a>
+    <a class="card" href="{{ url_for('jobs_page') }}">
+        <h3>Jobs</h3>
+        <p>Add and view job descriptions.</p>
+    </a>
+    <a class="card" href="{{ url_for('find_match') }}">
+        <h3>Find Match</h3>
+        <p>See top matching resumes for a job.</p>
+    </a>
+</div>
+{% endblock %}
