@@ -1,7 +1,3 @@
-Below is a ready-to-use `README.md` for your GitHub repo based on your folder structure and tech stack.
-
-***
-
 # Resume Builder with ATS Score using MCP Server & LLMs
 
 Intelligent **resume–job matching and ATS score assistant** built with:  
